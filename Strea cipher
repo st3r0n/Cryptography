@@ -1,0 +1,20 @@
+used for symmetric key cryptography
+use pseudorandom sequences with bits of plaintext to ecrypt they usually XOR it
+
+one time pad--> plain text xored with seudo random stream cipher is based on it
+
+
++++++++++++++++++++++++++++++++
+TYpes of stream cipher
+1.syncronous --> when key is completely random not related to the plaintext
+
+
+2. self-synchronous or asynchronous
+
+
+it uses previous n block for encryption eg--> CFB
+
+stream cipher vulns-->
+
+key reuse --> eg if c1 and c2 are xoed with k
+then c1 xor c2= p1 xor p2 which can be found using frequencey analysis
