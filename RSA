@@ -1,0 +1,56 @@
+++++++++THE RSA++++++++++++++
+☑️assymetric cryptography
+The Public Key is made up of (n, e)
+
+The Private Key is made up of (n, d)
+
+The message is represented as m and is converted into a number
+
+The encrypted message or ciphertext is represented by c
+
+p and q are prime numbers which make up n
+e is the public exponent
+
+n is the modulus and its length in bits is the bit length (i.e. 1024 bit RSA)
+
+d is the private exponent
+
+The totient λ(n) is used to compute d and is equal to the lcm(p-1, q-1), another definition for λ(n) is that λ(pq) = lcm(λ(p), λ(q))
+
+
+(m^e)^d ≡ m (mod n) or (m^e)^d = kn + m
+where k is any number
+
+
+
+Choose two prime numbers such as:
+p = 61 and q = 53
+Find n:
+n = pq = 3233
+Calculate λ(n) = lcm(p-1, q-1)
+
+λ(3233) = lcm(60, 52) = 780
+Choose a public exponent such that 1 < e < λ(n) and is coprime (not a factor of) λ(n). The standard is most cases is 65537, but we will be using:
+
+e = 17
+Calculate d as the modular multiplicative inverse or in english find d such that: d x e mod λ(n) = 1
+d x 17 mod 780 = 1
+d = 413
+Now we have a public key of (3233, 17) and a private key of (3233, 413)
+
+Encryption
+With the public key, m can be encrypted trivially
+
+The ciphertext is equal to me mod n or:
+
+c = m17 mod 3233
+
+Decryption
+With the private key, m can be decrypted trivially as well
+
+The plaintext is equal to cd mod n or:
+
+m = c413 mod 3233
+
+
+use RSActftool from github to CTFs ----> https://github.com/RsaCtfTool/RsaCtfTool
