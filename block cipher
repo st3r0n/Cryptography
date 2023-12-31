@@ -1,0 +1,68 @@
+block cipher ----> these type of cipher include encrypting plaintext to cipher in blocks of data , multiple rounds of sncryption are done on them
+
+imp values
+IV(initialization vector)----> seq of bytes used to randomize encryption such that same plain text if encrypted will be different
+
+SV(starting vector)----> same as IV but it is used during the first block only
+
+Padding--> to ensure that blovk size are equal eg --> suppose one block has less bytes so it would add some padding to make them equal
+
+
+Mode--> how block cipher is aplied
+
+key---> key used to encrypt
+
+nonce---> random number
++++++++++++++++++++++++++++++++++++++++++
+examples
+
+1. ECB (electronic codebook) --> most basic
+in this type of cipher the palin text is divided in equal block then they are encrypted independently nad then chained together
+it can be easily break as it does not used IV or SV
+
+2.CBC(cipher block chaining)
+in this type of block cipher IV is used 
+for first block IV will be used and for next block and encrypted previous block is used as IV for each sequentila block
+
+flaw---> as it uses previous encrypted block even if we dont have IV it will only affect first block as other blocks can be decrypted
+
+
+3.PCBC(propogating CBC)
+is used so that decryption is not parallelised like CBC
+in this method the first block uses IV and 
+for next sequential blocks;
+plain+cipher=new IV
+
+
+4.counter (CTR)or cm OR ICM or SIC
+it uses nonce and IV and counter
+used in ATM and IPsec
+other modes are also their learn aboutthem
+
+size of counter = plaintext block size
+nonce+coutnter will be used
+step 1 nonce+counter is encrypted using the key then XORed with plaintext the resulting is cipher text
+different block havinf differnt counter 
+
+
+paddinf oracle attck --> suppose we have two encypted block then we may be able to break encryption
+
+A padding oracle attack is a type of cryptographic attack that targets encryption algorithms that use padding in order to increase the security and ensure data integrity.
+
+In many encryption schemes, including the widely used CBC (Cipher Block Chaining) mode, 
+the plaintext is divided into blocks and then padded to the appropriate block size before being encrypted. 
+Padding is necessary when the length of the plaintext is not an exact multiple of the block size. The padding typically includes information about the length of the padding and its structure.
+
+During a padding oracle attack, an attacker tries to exploit a vulnerability where the padding of the ciphertext is checked for correctness by the decryption system. 
+By modifying the ciphertext and observing the behavior of the system (usually through error messages or response times), the attacker can gather information about the decrypted plaintext.
+
+Typically, the attacker starts with an intercepted ciphertext and tries to modify the last byte of the previous ciphertext block in order to create different padding variations.
+By sending modified ciphertexts to the decryption oracle and analyzing the responses, the attacker can ultimately recover the entire plaintext by iteratively working backwards block by block.
+
+Padding oracle attacks can have serious implications, as they can potentially decrypt encrypted data without knowing the encryption key.
+They depend on vulnerabilities in the padding verification process and can be used to extract sensitive information, such as authentication tokens or encryption keys.
+
+
+
+
+
